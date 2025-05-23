@@ -1,5 +1,5 @@
 import { Image } from '../models/imageSchema.js';
-import { uploadFile } from "../middlewares/claudinary.js";
+import { uploadFile, deleteImage } from "../middlewares/claudinary.js";
 
 export const uploadImage = async (req, res) => {
     try {
@@ -25,7 +25,7 @@ export const uploadImage = async (req, res) => {
             });
         }
         const result = await uploadFile(file.path, "images");
-        if (!result || !result.secure_url) {
+        if (!result || !result.secure_url || !result.public_id) {
             return res.status(500).json({
                 success: false,
                 message: "Failed to upload image to Cloudinary"
@@ -36,6 +36,7 @@ export const uploadImage = async (req, res) => {
             uploadedBy,
             title,
             imageUrl: result.secure_url,
+            publicId: result.public_id,
             description,
             tags
         })
@@ -98,5 +99,37 @@ export const getOneImage = async (req, res) => {
         })
     } catch (error) {
         return res.status(500).json({ success: false, message: 'getOneImage failed!', error: error.message });
+    }
+}
+
+export const deleteOneImage = async (req, res) => {
+    try {
+        const id = req.params.id;
+        if (!id) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid id or expired id!"
+            });
+        }
+        const image = await Image.findByIdAndDelete(id);
+        if (!image) {
+            return res.status(404).json({
+                success: false,
+                message: "Image not found!"
+            });
+        }
+        const result = await deleteImage(image.publicId);
+        if (result.result !== "ok") {
+            return res.status(400).json({
+                success: false,
+                message: "Failed to delete Image from Cloudinary!"
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            message: "Image deleted successfully."
+        });
+    } catch (error) {
+        return res.status(500).json({ success: false, message: 'deleteImage failed!', error: error.message });
     }
 }
