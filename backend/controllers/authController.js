@@ -101,7 +101,7 @@ export const logout = async (req, res) => {
 
 export const getUser = async (req, res) => {
     try {
-        const id = req.user.id;
+        const id = req.user.userId;
         if (!id) {
             return res.status(400).json({
                 success: false,
