@@ -12,7 +12,7 @@ function App() {
       <Navbar />
       <div>
         <Routes>
-          <Route path="/home" element={<Landing />} />
+          <Route path="/" element={<Landing />} />
           <Route
             path="/register"
             element={
