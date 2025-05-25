@@ -27,8 +27,7 @@ const MyCard = ({ item, setIsUploaded }) => {
   const navigate = useNavigate();
   const { uploadApi } = useAuth();
   const [deleting, setDeleting] = useState(false);
-
-  // Normalize tags to always be an array for safe mapping (split by comma or space)
+  
   let tagsArray = [];
   if (typeof item.tags === "string" && item.tags.trim().length > 0) {
     tagsArray = item.tags
