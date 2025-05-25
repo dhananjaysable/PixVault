@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import { Loader } from "lucide-react";
+import MyCard from "../components/MyCard";
 
 const Dashboard = () => {
   const { loading, setLoading, uploadApi } = useAuth();
@@ -10,8 +11,7 @@ const Dashboard = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
-  const [allImages, setAllImages] = useState();
-  const [newImage, setNewImage] = useState();
+  const [allImages, setAllImages] = useState([]);
   const [isUploaded, setIsUploaded] = useState(false);
 
   const handleFileChange = (e) => {
@@ -26,11 +26,10 @@ const Dashboard = () => {
     try {
       const { data } = await axios.get(`${uploadApi}/images`);
       if (data.success) {
-        console.log(data.images);
         setAllImages(data.images);
       }
     } catch (error) {
-      console.log(error.response.data.message);
+      console.log(error?.response?.data?.message || error.message);
     }
   };
 
@@ -48,9 +47,12 @@ const Dashboard = () => {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (data.success) {
-        console.log(data.message);
-        setNewImage(data.data);
-        setIsUploaded(true);
+        setIsUploaded((prev) => !prev);
+        setTitle("");
+        setDescription("");
+        setTags("");
+        setFile(null);
+        setFileName("");
       }
     } catch (error) {
       console.log(error?.response?.data?.message || error.message);
@@ -58,17 +60,33 @@ const Dashboard = () => {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     getAllImages();
+    // eslint-disable-next-line
   }, [isUploaded]);
+
   return (
-    <div className="flex items-center justify-between w-full mt-6">
-      <div className="grid w-full h-full border-r border-gray-100"></div>
+    <div className="flex items-start justify-between w-full mt-6">
+      <div className="grid w-full h-full grid-cols-4 gap-4 p-4 border-r md:grid-cols-2 border-gray-300/50">
+        {allImages && allImages.length > 0 ? (
+          allImages.map((item, index) => (
+            <MyCard
+              item={item}
+              index={index}
+              key={item._id || index}
+              setIsUploaded={setIsUploaded}
+            />
+          ))
+        ) : (
+          <p className="text-gray-400">No images uploaded yet.</p>
+        )}
+      </div>
       <form
         method="post"
         encType="multipart/form-data"
         onSubmit={handleSubmit}
-        className="flex flex-col items-center justify-center w-1/3 gap-3 px-5 py-2 bg-white shadow-m rounded-xl"
+        className="flex flex-col items-start justify-center w-1/3 gap-3 px-5 py-2 bg-white shadow-m rounded-xl"
       >
         <input
           type="text"

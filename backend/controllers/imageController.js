@@ -6,7 +6,7 @@ export const uploadImage = async (req, res) => {
         const { title, description, tags } = req.body;
         const uploadedBy = req.user.userId;
         const file = req.file;
-        if (!title || !description || !tags) {
+        if (!title || !description) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required!"
@@ -38,7 +38,7 @@ export const uploadImage = async (req, res) => {
             imageUrl: result.secure_url,
             publicId: result.public_id,
             description,
-            tags
+            tags: tags ? tags : ""
         })
         await newImage.save()
         return res.status(200).json({
