@@ -26,6 +26,7 @@ const TAG_COLORS = [
 const Image = () => {
   const [image, setImage] = useState(null);
   const [deleting, setDeleting] = useState(false);
+  const [notFound, setNotFound] = useState(false);
   const { id } = useParams();
   const { uploadApi } = useAuth();
   const navigate = useNavigate();
@@ -35,8 +36,12 @@ const Image = () => {
       const { data } = await axios.get(`${uploadApi}/image/${imageId}`);
       if (data.success) {
         setImage(data.image);
+        setNotFound(false);
+      } else {
+        setNotFound(true);
       }
     } catch (error) {
+      setNotFound(true);
       console.log(error?.response?.data?.message || error.message);
     }
   };
@@ -80,10 +85,18 @@ const Image = () => {
     }
   };
 
-  if (!image) {
+  if (notFound) {
     return (
       <div className="flex items-center justify-center w-full h-full">
         <p className="text-gray-400">Image not found.</p>
+      </div>
+    );
+  }
+
+  if (!image) {
+    return (
+      <div className="flex items-center justify-center w-full h-full">
+        <p className="text-gray-400">Loading...</p>
       </div>
     );
   }
