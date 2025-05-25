@@ -11,6 +11,7 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Loader } from "lucide-react";
+import toast from "react-hot-toast";
 
 const TAG_COLORS = [
   "bg-emerald-100 text-emerald-700",
@@ -27,7 +28,7 @@ const MyCard = ({ item, setIsUploaded }) => {
   const navigate = useNavigate();
   const { uploadApi } = useAuth();
   const [deleting, setDeleting] = useState(false);
-  
+
   let tagsArray = [];
   if (typeof item.tags === "string" && item.tags.trim().length > 0) {
     tagsArray = item.tags
@@ -55,10 +56,10 @@ const MyCard = ({ item, setIsUploaded }) => {
       const { data } = await axios.delete(`${uploadApi}/image/${item._id}`);
       if (data.success) {
         setIsUploaded((prev) => !prev);
-        console.log(data.message);
+        toast.success(data.message);
       }
     } catch (error) {
-      console.log(error?.response?.data?.message || error.message);
+      toast.error(error?.response?.data?.message || error.message);
     } finally {
       setDeleting(false);
     }

@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "lucide-react";
-
+import toast from "react-hot-toast";
 const Register = () => {
   const { loading, setLoading, authApi } = useAuth();
   const [name, setName] = useState("");
@@ -24,11 +24,12 @@ const Register = () => {
         }
       );
       if (data.success) {
+        toast.success(data.message);
         setLoading(false);
         navigate("/login");
       }
     } catch (error) {
-      console.log(error.response.data.message);
+      toast.error(error.response.data.message);
       setLoading(false);
     } finally {
       setLoading(false);

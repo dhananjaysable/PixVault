@@ -11,6 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import { ArrowLeft, Loader } from "lucide-react";
+import toast from "react-hot-toast";
 
 const TAG_COLORS = [
   "bg-emerald-100 text-emerald-700",
@@ -42,7 +43,7 @@ const Image = () => {
       }
     } catch (error) {
       setNotFound(true);
-      console.log(error?.response?.data?.message || error.message);
+      toast.error(error?.response?.data?.message || error.message);
     }
   };
 
@@ -75,11 +76,11 @@ const Image = () => {
     try {
       const { data } = await axios.delete(`${uploadApi}/image/${id}`);
       if (data.success) {
-        console.log(data.message);
+        toast.success(data.message);
         navigate("/dashboard");
       }
     } catch (error) {
-      console.log(error?.response?.data?.message || error.message);
+      toast.error(error?.response?.data?.message || error.message);
     } finally {
       setDeleting(false);
     }

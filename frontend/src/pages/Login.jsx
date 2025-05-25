@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { setUser, setIsLoggedIn, loading, setLoading, authApi } = useAuth();
@@ -26,10 +27,11 @@ const Login = () => {
         setUser(data.user);
         setIsLoggedIn(true);
         setLoading(false);
+        toast.success(data.message);
         navigate("/dashboard");
       }
     } catch (error) {
-      console.log(error.response.data.message);
+      toast.error(error.response.data.message);
       setLoading(false);
     } finally {
       setLoading(false);

@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import { Loader } from "lucide-react";
 import MyCard from "../components/MyCard";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
   const { loading, setLoading, uploadApi } = useAuth();
@@ -47,6 +48,7 @@ const Dashboard = () => {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (data.success) {
+        toast.success(data.message);
         setIsUploaded((prev) => !prev);
         setTitle("");
         setDescription("");
@@ -55,7 +57,7 @@ const Dashboard = () => {
         setFileName("");
       }
     } catch (error) {
-      console.log(error?.response?.data?.message || error.message);
+      toast.error(error?.response?.data?.message || error.message);
     } finally {
       setLoading(false);
     }
