@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -14,14 +14,9 @@ import { Loader } from "lucide-react";
 import toast from "react-hot-toast";
 
 const TAG_COLORS = [
-  "bg-emerald-100 text-emerald-700",
-  "bg-blue-100 text-blue-700",
-  "bg-yellow-100 text-yellow-700",
-  "bg-pink-100 text-pink-700",
-  "bg-purple-100 text-purple-700",
-  "bg-orange-100 text-orange-700",
-  "bg-cyan-100 text-cyan-700",
-  "bg-red-100 text-red-700",
+  "bg-gradient-to-r from-pink-400 to-purple-400 text-white",
+  "bg-gradient-to-r from-purple-400 to-fuchsia-400 text-white",
+  "bg-gradient-to-r from-fuchsia-400 to-pink-400 text-white",
 ];
 
 const MyCard = ({ item, setIsUploaded }) => {
@@ -66,53 +61,55 @@ const MyCard = ({ item, setIsUploaded }) => {
   };
 
   return (
-    <Card className="w-full transition-transform bg-white border border-gray-200 shadow-lg rounded-xl hover:scale-105">
-      <CardHeader className="pb-2">
-        <CardTitle className="text-lg font-semibold truncate text-emerald-700">
+    <Card className="w-full overflow-hidden transition-all duration-300 bg-white border border-pink-100 shadow-lg rounded-2xl hover:shadow-xl">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-xl font-bold text-transparent bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text">
           {item.title}
         </CardTitle>
-        <CardDescription className="text-gray-500">
+        <CardDescription className="text-purple-700">
           {item.description}
         </CardDescription>
       </CardHeader>
-      <CardContent className="flex items-center justify-center py-2">
-        <img
-          src={item.imageUrl}
-          alt={item.title}
-          className="object-cover w-56 h-56 border border-gray-100 rounded-lg shadow-sm"
-        />
+      <CardContent className="p-0">
+        <div className="relative overflow-hidden group">
+          <img
+            src={item.imageUrl}
+            alt={item.title}
+            className="object-cover w-full h-48 transition-transform duration-500 sm:h-56 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 flex items-end p-4 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-purple-900/50 to-transparent group-hover:opacity-100">
+            <div className="flex flex-wrap gap-2">
+              {tagsArray.map((tag, idx) => (
+                <span
+                  key={idx}
+                  className={`px-3 py-1 text-xs font-medium rounded-full ${
+                    TAG_COLORS[idx % TAG_COLORS.length]
+                  }`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
       </CardContent>
-      <CardFooter className="flex flex-col gap-2">
-        <div className="flex flex-wrap gap-2 mb-2">
-          {tagsArray.map((tag, idx) => (
-            <span
-              key={idx}
-              className={`px-2 py-1 text-xs rounded-full ${
-                TAG_COLORS[idx % TAG_COLORS.length]
-              }`}
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        <div className="flex w-full gap-3">
-          <button
-            onClick={handleView}
-            className="flex-1 px-4 py-2 text-sm font-medium text-white transition rounded-lg cursor-pointer bg-emerald-600 hover:bg-emerald-700"
-          >
-            View
-          </button>
-          <button
-            onClick={handleDelete}
-            disabled={deleting}
-            className={`flex-1 px-4 py-2 cursor-pointer text-sm font-medium text-white transition rounded-lg bg-red-500 hover:bg-red-600 ${
-              deleting ? "opacity-60 cursor-not-allowed" : ""
-            }`}
-          >
-            {deleting ? <Loader className="mx-auto animate-spin" /> : "Delete"}
-          </button>
-        </div>
-      </CardFooter>
+      <div className="flex gap-3 p-4 pt-4">
+        <button
+          onClick={handleView}
+          className="flex-1 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 rounded-lg shadow cursor-pointer bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 hover:shadow-pink-500/25"
+        >
+          View
+        </button>
+        <button
+          onClick={handleDelete}
+          disabled={deleting}
+          className={`flex-1 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 bg-red-500 rounded-lg shadow cursor-pointer hover:bg-red-600 hover:shadow-red-500/25 ${
+            deleting ? "opacity-60 cursor-not-allowed" : ""
+          }`}
+        >
+          {deleting ? <Loader className="mx-auto animate-spin" /> : "Delete"}
+        </button>
+      </div>
     </Card>
   );
 };

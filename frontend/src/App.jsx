@@ -6,6 +6,7 @@ import { useAuth } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import Landing from "./pages/Landing";
 import Image from "./pages/Image";
+import Footer from "./components/Footer";
 function App() {
   const { isLoggedIn } = useAuth();
   return (
@@ -42,6 +43,7 @@ function App() {
             element={isLoggedIn ? <Image /> : <Navigate to="/login" replace />}
           />
         </Routes>
+        <Footer />
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import dotenv from 'dotenv'
 import { v2 as cloudinary } from 'cloudinary';
-import { Image } from '../models/imageSchema.js';
 dotenv.config()
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -23,7 +22,6 @@ export const uploadFile = async (filePath, folder) => {
 export const deleteImage = async (publicId) => {
     try {
         const result = await cloudinary.uploader.destroy(publicId);
-        console.log('Image deleted successfully:', result);
         return result;
     } catch (error) {
         console.error('Error deleting image:', error);
