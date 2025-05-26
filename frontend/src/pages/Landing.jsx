@@ -1,8 +1,44 @@
 /* eslint-disable no-unused-vars */
+import axios from "axios";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
+import { Loader } from "lucide-react";
 
 export default function Landing() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const { loading, setLoading, contactApi } = useAuth();
+  const handleContact = async (e) => {
+    e.preventDefault();
+    if (!name || !email || !message) {
+      return toast.error("Please fill all fields!");
+    }
+    setLoading(true);
+    try {
+      axios.defaults.withCredentials = true;
+      const { data } = await axios.post(
+        `${contactApi}`,
+        { name, email, message },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      if (data.success) {
+        toast.success(data.message);
+        setName("");
+        setEmail("");
+        setMessage("");
+        setLoading(false);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="text-gray-800 bg-white">
       <section className="relative flex flex-col items-center justify-center min-h-screen px-6 overflow-hidden text-center bg-gradient-to-br from-pink-100 via-purple-100 to-white">
@@ -62,7 +98,7 @@ export default function Landing() {
         >
           PixVault is a modern photo gallery solution crafted for photographers
           and visual storytellers. Our platform makes photo management elegant,
-          intuitive, and secure — with style.
+          intuitive, and secure.
         </motion.p>
       </section>
 
@@ -126,27 +162,41 @@ export default function Landing() {
         >
           Contact Us
         </motion.h2>
-        <form className="max-w-xl p-10 mx-auto space-y-6 bg-white shadow-xl rounded-3xl ring-4 ring-pink-200">
+        <form
+          onSubmit={handleContact}
+          className="max-w-xl p-10 mx-auto space-y-6 bg-white shadow-xl rounded-3xl ring-4 ring-pink-200"
+        >
           <input
             type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder="Your Name"
             className="w-full px-5 py-4 text-lg border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400"
           />
           <input
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Your Email"
             className="w-full px-5 py-4 text-lg border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400"
           />
           <textarea
             placeholder="Your Message"
             rows={5}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             className="w-full px-5 py-4 text-lg border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400"
           ></textarea>
           <button
             type="submit"
             className="w-full py-4 text-lg font-semibold text-white transition cursor-pointer bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl hover:from-pink-600 hover:to-purple-600"
           >
-            Send Message
+            {loading ? (
+              <Loader className="mx-auto animate-spin" />
+            ) : (
+              "Send Message"
+            )}
           </button>
         </form>
       </section>

@@ -10,6 +10,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const authApi = "http://localhost:8080/api/auth";
   const uploadApi = "http://localhost:8080/api/upload";
+  const contactApi = "http://localhost:8080/api/contact";
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -45,6 +46,7 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn,
     loading,
     setLoading,
+    contactApi,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

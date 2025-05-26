@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import { connectDB } from './config/db.js'
 import authRouter from './routes/authRoute.js'
 import imageRouter from './routes/imageRoute.js'
+import contactRouter from './routes/contactRoute.js'
 dotenv.config()
 
 const app = express()
@@ -22,6 +23,7 @@ app.use(cors({
 // Routes
 app.use('/api/auth', authRouter);
 app.use('/api/upload', imageRouter);
+app.use('/api/contact', contactRouter)
 
 connectDB().then(() => {
     app.listen(port, () => {
