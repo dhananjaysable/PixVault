@@ -121,7 +121,7 @@ const Image = () => {
       <div className="relative z-10 max-w-4xl mx-auto">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 px-6 py-3 mb-6 font-medium text-purple-700 transition-all duration-300 rounded-full bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 hover:shadow-lg"
+          className="flex items-center gap-2 px-6 py-3 mb-6 font-medium text-purple-700 transition-all duration-300 rounded-full cursor-pointer bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 hover:shadow-lg"
         >
           <ArrowLeft size={18} /> <span>Back to Gallery</span>
         </button>
