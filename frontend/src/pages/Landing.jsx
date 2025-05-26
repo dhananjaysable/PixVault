@@ -33,13 +33,14 @@ export default function Landing() {
           Securely store, organize, and showcase your photos in a beautiful and
           user-friendly interface.
         </motion.p>
-        <motion.a
-          href="#about"
-          className="px-8 py-4 text-lg font-medium text-white transition rounded-full shadow-lg bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600"
-          whileHover={{ scale: 1.05 }}
-        >
-          Learn More
-        </motion.a>
+        <Link to={"/register"}>
+          <motion.a
+            className="px-8 py-4 text-lg font-medium text-white transition rounded-full shadow-lg bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600"
+            whileHover={{ scale: 1.05 }}
+          >
+            Get Started
+          </motion.a>
+        </Link>
       </section>
 
       <section id="about" className="px-6 py-24 text-center bg-pink-50">
@@ -143,7 +144,7 @@ export default function Landing() {
           ></textarea>
           <button
             type="submit"
-            className="w-full py-4 text-lg font-semibold text-white transition bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl hover:from-pink-600 hover:to-purple-600"
+            className="w-full py-4 text-lg font-semibold text-white transition cursor-pointer bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl hover:from-pink-600 hover:to-purple-600"
           >
             Send Message
           </button>

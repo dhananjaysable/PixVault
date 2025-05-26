@@ -126,7 +126,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-white transition-all duration-300 transform shadow-lg bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl hover:from-pink-600 hover:to-purple-600 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none hover:shadow-pink-500/25"
+              className="flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-white transition-all duration-300 transform shadow-lg cursor-pointer bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl hover:from-pink-600 hover:to-purple-600 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none hover:shadow-pink-500/25"
             >
               {loading ? (
                 <>
@@ -154,7 +154,7 @@ const Login = () => {
 
             <Link
               to="/register"
-              className="flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-purple-600 transition-all duration-300 transform border-2 border-pink-200 rounded-xl hover:text-white hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500 hover:scale-105 group"
+              className="flex items-center justify-center w-full px-6 py-3 space-x-2 font-semibold text-purple-600 transition-all duration-300 transform border-2 border-pink-200 cursor-pointer rounded-xl hover:text-white hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500 hover:scale-105 group"
             >
               <span>Create New Account</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
