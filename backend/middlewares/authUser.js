@@ -3,10 +3,7 @@ export const authUser = async (req, res, next) => {
     try {
         const token = req.cookies.token;
         if (!token) {
-            return res.status(400).json({
-                success: false,
-                message: "Token is required!"
-            })
+            return;
         }
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
         if (!decodedToken) {
@@ -27,3 +24,8 @@ export const authUser = async (req, res, next) => {
         })
     }
 }
+
+// res.status(400).json({
+//     success: false,
+//     message: "Token is required!"
+// })

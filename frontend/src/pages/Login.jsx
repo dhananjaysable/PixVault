@@ -103,7 +103,7 @@ const Login = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute text-purple-400 transition-colors transform -translate-y-1/2 right-3 top-1/2 hover:text-purple-600"
+                  className="absolute text-purple-400 transition-colors transform -translate-y-1/2 right-3 top-1/2 hover:text-purple-600 cursor-pointer"
                 >
                   {showPassword ? (
                     <EyeOff className="w-5 h-5" />

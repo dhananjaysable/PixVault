@@ -107,7 +107,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center md:hidden">
           <button
-            className="text-purple-700 transition-colors hover:text-pink-500 focus:outline-none"
+            className="text-purple-700 transition-colors hover:text-pink-500 focus:outline-none cursor-pointer"
             onClick={handleMenuToggle}
             aria-label="Open menu"
           >
@@ -115,50 +115,54 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      {menuOpen && showMenuItems && (
+      {menuOpen && (
         <div className="absolute left-0 right-0 z-50 shadow-lg md:hidden bg-gradient-to-b from-pink-50 to-purple-50">
           <div className="flex flex-col items-center py-4 space-y-3">
-            <Link
-              to="/"
-              className="font-medium text-purple-700 hover:text-pink-500"
-              onClick={() => setMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <a
-              href="#about"
-              className="font-medium text-purple-700 hover:text-pink-500"
-              onClick={() => setMenuOpen(false)}
-            >
-              About
-            </a>
-            <a
-              href="#features"
-              className="font-medium text-purple-700 hover:text-pink-500"
-              onClick={() => setMenuOpen(false)}
-            >
-              Features
-            </a>
-            <a
-              href="#contact"
-              className="font-medium text-purple-700 hover:text-pink-500"
-              onClick={() => setMenuOpen(false)}
-            >
-              Contact
-            </a>
+            {showMenuItems && (
+              <>
+                <Link
+                  to="/"
+                  className="font-medium text-purple-700 hover:text-pink-500 cursor-pointer"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <a
+                  href="#about"
+                  className="font-medium text-purple-700 hover:text-pink-500 cursor-pointer"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  About
+                </a>
+                <a
+                  href="#features"
+                  className="font-medium text-purple-700 hover:text-pink-500 cursor-pointer"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Features
+                </a>
+                <a
+                  href="#contact"
+                  className="font-medium text-purple-700 hover:text-pink-500 cursor-pointer"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Contact
+                </a>
+              </>
+            )}
             <div className="flex flex-col items-center w-full pt-2 space-y-2">
               {!isLoggedIn ? (
                 <>
                   <Link
                     to="/login"
-                    className="w-40 px-6 py-2 font-semibold text-center text-purple-700 transition-all duration-300 transform border border-purple-200 rounded-full hover:text-pink-500 hover:border-pink-300 hover:bg-white/50 hover:scale-105"
+                    className="w-40 px-6 py-2 font-semibold text-center text-purple-700 transition-all duration-300 transform border border-purple-200 rounded-full hover:text-pink-500 hover:border-pink-300 hover:bg-white/50 hover:scale-105 cursor-pointer"
                     onClick={() => setMenuOpen(false)}
                   >
                     Login
                   </Link>
                   <Link
                     to="/register"
-                    className="w-40 px-6 py-2 font-semibold text-center text-white transition-all duration-300 transform rounded-full shadow-lg bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 hover:scale-105 hover:shadow-pink-500/25"
+                    className="w-40 px-6 py-2 font-semibold text-center text-white transition-all duration-300 transform rounded-full shadow-lg bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 hover:scale-105 hover:shadow-pink-500/25 cursor-pointer"
                     onClick={() => setMenuOpen(false)}
                   >
                     Register
@@ -168,7 +172,7 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/dashboard"
-                    className="w-40 px-6 py-2 font-semibold text-center text-purple-700 transition-all duration-300 transform border border-purple-200 rounded-full hover:text-pink-500 hover:border-pink-300 hover:bg-white/50 hover:scale-105"
+                    className="w-40 px-6 py-2 font-semibold text-center text-purple-700 transition-all duration-300 transform border border-purple-200 rounded-full hover:text-pink-500 hover:border-pink-300 hover:bg-white/50 hover:scale-105 cursor-pointer"
                     onClick={() => setMenuOpen(false)}
                   >
                     Dashboard
@@ -178,7 +182,7 @@ const Navbar = () => {
                       handleLogout();
                       setMenuOpen(false);
                     }}
-                    className="w-40 px-6 py-2 font-semibold text-center text-white transition-all duration-300 transform border-0 rounded-full shadow-lg bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 hover:scale-105 hover:shadow-pink-500/25"
+                    className="w-40 px-6 py-2 font-semibold text-center text-white transition-all duration-300 transform border-0 rounded-full shadow-lg bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 hover:scale-105 hover:shadow-pink-500/25 cursor-pointer"
                   >
                     Logout
                   </button>
