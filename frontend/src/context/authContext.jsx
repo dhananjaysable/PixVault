@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -13,7 +14,6 @@ export const AuthProvider = ({ children }) => {
   const contactApi = "https://pixvault-d9yp.onrender.com/api/contact";
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const checkAuth = async () => {
     try {
@@ -44,8 +44,6 @@ export const AuthProvider = ({ children }) => {
     uploadApi,
     isLoggedIn,
     setIsLoggedIn,
-    loading,
-    setLoading,
     contactApi,
   };
 
