@@ -5,7 +5,15 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
-import { Loader, Camera, Shield, Sparkles, Heart, Star } from "lucide-react";
+import {
+  Loader,
+  Camera,
+  Shield,
+  Sparkles,
+  Heart,
+  Star,
+  Wand2,
+} from "lucide-react";
 
 const Landing = () => {
   const [name, setName] = useState("");
@@ -93,7 +101,7 @@ const Landing = () => {
             whileHover={{ scale: 1.05 }}
           >
             <Sparkles className="w-4 h-4 mr-2 text-pink-500" />
-          Crafted for Photo Lovers
+            Crafted for Photo Lovers
           </motion.div>
 
           <motion.h1
@@ -182,6 +190,7 @@ const Landing = () => {
         id="about"
         className="relative px-6 py-24 overflow-hidden bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50"
       >
+        {/* Decorative Bubbles */}
         <div className="absolute w-20 h-20 bg-pink-200 rounded-full top-20 left-10 opacity-20 animate-bounce"></div>
         <div className="absolute w-16 h-16 bg-purple-200 rounded-full top-40 right-20 opacity-30 animate-pulse"></div>
         <div
@@ -194,6 +203,7 @@ const Landing = () => {
         ></div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
+          {/* Section Heading */}
           <motion.div
             className="mb-16 text-center"
             initial={{ opacity: 0, y: 50 }}
@@ -222,7 +232,9 @@ const Landing = () => {
             ></motion.div>
           </motion.div>
 
+          {/* Cards */}
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            {/* Left Column */}
             <motion.div
               className="space-y-8"
               initial={{ opacity: 0, x: -50 }}
@@ -230,6 +242,7 @@ const Landing = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
+              {/* Vision */}
               <div className="relative p-8 bg-white shadow-2xl rounded-3xl ring-1 ring-purple-100">
                 <div className="absolute flex items-center justify-center w-8 h-8 rounded-full -top-4 -left-4 bg-gradient-to-r from-pink-500 to-purple-500">
                   <Sparkles className="w-4 h-4 text-white" />
@@ -246,6 +259,7 @@ const Landing = () => {
                 </p>
               </div>
 
+              {/* Built with Passion */}
               <div className="relative p-8 border border-pink-100 shadow-xl bg-gradient-to-br from-pink-50 to-purple-50 rounded-3xl">
                 <div className="absolute flex items-center justify-center w-8 h-8 rounded-full -top-4 -right-4 bg-gradient-to-r from-purple-500 to-indigo-500">
                   <Heart className="w-4 h-4 text-white" />
@@ -263,6 +277,7 @@ const Landing = () => {
               </div>
             </motion.div>
 
+            {/* Right Column - Value Cards + Mission */}
             <motion.div
               className="space-y-6"
               initial={{ opacity: 0, x: 50 }}
@@ -270,46 +285,37 @@ const Landing = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  {
-                    icon: Shield,
-                    number: "99.9%",
-                    label: "Uptime",
-                    color: "from-purple-500 to-indigo-500",
-                  },
-                  {
-                    icon: Camera,
-                    number: "1M+",
-                    label: "Photos Stored",
-                    color: "from-indigo-500 to-blue-500",
-                  },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    className="relative p-6 transition-all duration-300 bg-white shadow-lg rounded-2xl hover:shadow-xl"
-                    whileHover={{ y: -5, scale: 1.02 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 * index, duration: 0.6 }}
-                  >
-                    <div
-                      className={`inline-flex items-center justify-center w-12 h-12 mb-3 bg-gradient-to-r ${stat.color} rounded-xl shadow-lg`}
-                    >
-                      <stat.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div
-                      className={`text-2xl font-bold text-transparent bg-gradient-to-r ${stat.color} bg-clip-text`}
-                    >
-                      {stat.number}
-                    </div>
-                    <div className="text-sm font-medium text-gray-600">
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                ))}
+              <div className="grid grid-cols-1 gap-6">
+                {/* Value Card 1 */}
+                <div className="p-6 bg-white border border-purple-100 shadow-xl rounded-2xl">
+                  <div className="flex items-center mb-4">
+                    <Shield className="w-6 h-6 mr-3 text-purple-500" />
+                    <h4 className="text-xl font-semibold text-purple-700">
+                      Private & Secure
+                    </h4>
+                  </div>
+                  <p className="leading-relaxed text-gray-600">
+                    Your memories are encrypted and stored with privacy-first
+                    design. You stay in control—always.
+                  </p>
+                </div>
+
+                {/* Value Card 2 */}
+                <div className="p-6 bg-white border border-purple-100 shadow-xl rounded-2xl">
+                  <div className="flex items-center mb-4">
+                    <Wand2 className="w-6 h-6 mr-3 text-pink-500" />
+                    <h4 className="text-xl font-semibold text-purple-700">
+                      Thoughtfully Organized
+                    </h4>
+                  </div>
+                  <p className="leading-relaxed text-gray-600">
+                    Smart tags and albums make it effortless to sort, search,
+                    and relive your favorite moments.
+                  </p>
+                </div>
               </div>
+
+              {/* Mission */}
               <motion.div
                 className="relative p-8 border border-purple-100 shadow-2xl bg-gradient-to-br from-white to-purple-50 rounded-3xl"
                 whileHover={{ scale: 1.02 }}
@@ -346,6 +352,7 @@ const Landing = () => {
             </motion.div>
           </div>
 
+          {/* CTA */}
           <motion.div
             className="mt-16 text-center"
             initial={{ opacity: 0, y: 30 }}
@@ -373,7 +380,6 @@ const Landing = () => {
           </motion.div>
         </div>
       </section>
-
       <section
         id="features"
         className="px-6 py-24 text-center bg-gradient-to-br from-purple-50 via-pink-50 to-white"
