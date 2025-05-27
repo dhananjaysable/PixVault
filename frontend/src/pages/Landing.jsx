@@ -7,7 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 import { Loader, Camera, Shield, Sparkles, Heart, Star } from "lucide-react";
 
-export default function Landing() {
+const Landing = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -575,4 +575,5 @@ export default function Landing() {
       </section>
     </div>
   );
-}
+};
+export default Landing;
