@@ -8,9 +8,9 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const authApi = "http://localhost:8080/api/auth";
-  const uploadApi = "http://localhost:8080/api/upload";
-  const contactApi = "http://localhost:8080/api/contact";
+  const authApi = "https://pixvault-d9yp.onrender.com/api/auth";
+  const uploadApi = "https://pixvault-d9yp.onrender.com/api/upload";
+  const contactApi = "https://pixvault-d9yp.onrender.com/api/contact";
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(false);
