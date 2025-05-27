@@ -24,3 +24,8 @@ export const authUser = async (req, res, next) => {
         })
     }
 }
+
+// res.status(400).json({
+//     success: false,
+//     message: "Token is required!"
+// })
