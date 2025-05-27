@@ -6,7 +6,8 @@ import MyCard from "../components/MyCard";
 import toast from "react-hot-toast";
 
 const Dashboard = () => {
-  const { loading, setLoading, uploadApi } = useAuth();
+  const { uploadApi } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
   const [title, setTitle] = useState("");

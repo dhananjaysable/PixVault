@@ -2,22 +2,15 @@ import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  Loader,
-  Mail,
-  Lock,
-  Camera,
-  ArrowRight,
-  Eye,
-  EyeOff,
-} from "lucide-react";
+import { Loader, Mail, Lock, ArrowRight, Eye, EyeOff } from "lucide-react";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { setUser, setIsLoggedIn, loading, setLoading, authApi } = useAuth();
+  const { setUser, setIsLoggedIn, authApi } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -103,7 +96,7 @@ const Login = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute text-purple-400 transition-colors transform -translate-y-1/2 right-3 top-1/2 hover:text-purple-600 cursor-pointer"
+                  className="absolute text-purple-400 transition-colors transform -translate-y-1/2 cursor-pointer right-3 top-1/2 hover:text-purple-600"
                 >
                   {showPassword ? (
                     <EyeOff className="w-5 h-5" />

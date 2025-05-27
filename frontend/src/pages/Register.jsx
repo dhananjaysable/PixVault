@@ -6,10 +6,11 @@ import { Loader, User, Mail, Lock, Camera, ArrowRight } from "lucide-react";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { loading, setLoading, authApi } = useAuth();
+  const { authApi } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {

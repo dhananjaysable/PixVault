@@ -11,7 +11,8 @@ const Landing = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const { loading, setLoading, contactApi } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const { contactApi } = useAuth();
 
   const handleContact = async (e) => {
     e.preventDefault();
@@ -43,25 +44,25 @@ const Landing = () => {
   return (
     <div className="text-gray-800 bg-white">
       <section className="relative flex flex-col items-center justify-center min-h-screen px-6 overflow-hidden text-center bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-50">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-pink-300 to-purple-300 rounded-full opacity-20 animate-bounce blur-sm"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-r from-purple-300 to-indigo-300 rounded-full opacity-25 animate-pulse"></div>
+        <div className="absolute w-32 h-32 rounded-full top-20 left-10 bg-gradient-to-r from-pink-300 to-purple-300 opacity-20 animate-bounce blur-sm"></div>
+        <div className="absolute w-24 h-24 rounded-full opacity-25 top-40 right-20 bg-gradient-to-r from-purple-300 to-indigo-300 animate-pulse"></div>
         <div
-          className="absolute bottom-32 left-20 w-16 h-16 bg-gradient-to-r from-indigo-300 to-pink-300 rounded-full opacity-30 animate-bounce"
+          className="absolute w-16 h-16 rounded-full bottom-32 left-20 bg-gradient-to-r from-indigo-300 to-pink-300 opacity-30 animate-bounce"
           style={{ animationDelay: "1s" }}
         ></div>
         <div
-          className="absolute bottom-40 right-10 w-40 h-40 bg-gradient-to-r from-pink-200 to-purple-200 rounded-full opacity-15 animate-pulse blur-md"
+          className="absolute w-40 h-40 rounded-full bottom-40 right-10 bg-gradient-to-r from-pink-200 to-purple-200 opacity-15 animate-pulse blur-md"
           style={{ animationDelay: "2s" }}
         ></div>
-        <div className="absolute top-1/3 left-1/4 w-8 h-8 bg-yellow-300 rounded-full opacity-40 animate-ping"></div>
+        <div className="absolute w-8 h-8 bg-yellow-300 rounded-full top-1/3 left-1/4 opacity-40 animate-ping"></div>
         <div
-          className="absolute bottom-1/3 right-1/4 w-12 h-12 bg-rose-300 rounded-full opacity-30 animate-bounce"
+          className="absolute w-12 h-12 rounded-full bottom-1/3 right-1/4 bg-rose-300 opacity-30 animate-bounce"
           style={{ animationDelay: "0.5s" }}
         ></div>
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full opacity-60"
+            className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-pink-400 to-purple-400 opacity-60"
             style={{
               top: `${20 + Math.random() * 60}%`,
               left: `${10 + Math.random() * 80}%`,
@@ -85,7 +86,7 @@ const Landing = () => {
           transition={{ duration: 1 }}
         >
           <motion.div
-            className="inline-flex mt-8 items-center px-6 py-2 mb-8 text-sm font-medium text-purple-700 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-purple-100"
+            className="inline-flex items-center px-6 py-2 mt-8 mb-8 text-sm font-medium text-purple-700 border border-purple-100 rounded-full shadow-lg bg-white/80 backdrop-blur-sm"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
@@ -96,7 +97,7 @@ const Landing = () => {
           </motion.div>
 
           <motion.h1
-            className="mb-6 text-7xl md:text-8xl font-extrabold tracking-tight"
+            className="mb-6 font-extrabold tracking-tight text-7xl md:text-8xl"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -110,13 +111,13 @@ const Landing = () => {
           </motion.h1>
 
           <motion.p
-            className="max-w-3xl mx-auto mb-10 text-2xl font-medium text-purple-600 leading-relaxed"
+            className="max-w-3xl mx-auto mb-10 text-2xl font-medium leading-relaxed text-purple-600"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             Transform the way you{" "}
-            <span className="text-transparent bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text font-bold">
+            <span className="font-bold text-transparent bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text">
               store, organize, and showcase
             </span>{" "}
             your precious memories with our beautiful and secure photo
@@ -124,14 +125,14 @@ const Landing = () => {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+            className="flex flex-col items-center justify-center gap-4 mb-12 sm:flex-row"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
             <Link to="/register">
               <motion.button
-                className="group relative px-10 py-4 text-lg font-semibold text-white bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full shadow-2xl hover:shadow-pink-500/25 transition-all duration-300 cursor-pointer overflow-hidden"
+                className="relative px-10 py-4 overflow-hidden text-lg font-semibold text-white transition-all duration-300 rounded-full shadow-2xl cursor-pointer group bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:shadow-pink-500/25"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -144,7 +145,7 @@ const Landing = () => {
 
             <Link to="/login">
               <motion.button
-                className="px-10 py-4 text-lg font-semibold text-purple-700 bg-white/80 backdrop-blur-sm rounded-full shadow-xl hover:shadow-2xl border border-purple-200 hover:border-pink-300 transition-all duration-300 cursor-pointer"
+                className="px-10 py-4 text-lg font-semibold text-purple-700 transition-all duration-300 border border-purple-200 rounded-full shadow-xl cursor-pointer bg-white/80 backdrop-blur-sm hover:shadow-2xl hover:border-pink-300"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -155,7 +156,7 @@ const Landing = () => {
         </motion.div>
 
         <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute transform -translate-x-1/2 bottom-8 left-1/2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
@@ -165,10 +166,10 @@ const Landing = () => {
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <span className="text-sm font-medium mb-2">Discover More</span>
-            <div className="w-6 h-10 border-2 border-purple-300 rounded-full flex justify-center">
+            <span className="mb-2 text-sm font-medium">Discover More</span>
+            <div className="flex justify-center w-6 h-10 border-2 border-purple-300 rounded-full">
               <motion.div
-                className="w-1 h-3 bg-gradient-to-b from-pink-500 to-purple-500 rounded-full mt-2"
+                className="w-1 h-3 mt-2 rounded-full bg-gradient-to-b from-pink-500 to-purple-500"
                 animate={{ y: [0, 12, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               />
@@ -181,27 +182,27 @@ const Landing = () => {
         id="about"
         className="relative px-6 py-24 overflow-hidden bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50"
       >
-        <div className="absolute top-20 left-10 w-20 h-20 bg-pink-200 rounded-full opacity-20 animate-bounce"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-purple-200 rounded-full opacity-30 animate-pulse"></div>
+        <div className="absolute w-20 h-20 bg-pink-200 rounded-full top-20 left-10 opacity-20 animate-bounce"></div>
+        <div className="absolute w-16 h-16 bg-purple-200 rounded-full top-40 right-20 opacity-30 animate-pulse"></div>
         <div
-          className="absolute bottom-20 left-20 w-12 h-12 bg-indigo-200 rounded-full opacity-25 animate-bounce"
+          className="absolute w-12 h-12 bg-indigo-200 rounded-full opacity-25 bottom-20 left-20 animate-bounce"
           style={{ animationDelay: "1s" }}
         ></div>
         <div
-          className="absolute bottom-40 right-10 w-24 h-24 bg-pink-100 rounded-full opacity-20 animate-pulse"
+          className="absolute w-24 h-24 bg-pink-100 rounded-full bottom-40 right-10 opacity-20 animate-pulse"
           style={{ animationDelay: "2s" }}
         ></div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
           <motion.div
-            className="text-center mb-16"
+            className="mb-16 text-center"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <motion.div
-              className="inline-flex items-center justify-center w-20 h-20 mb-6 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full shadow-xl"
+              className="inline-flex items-center justify-center w-20 h-20 mb-6 rounded-full shadow-xl bg-gradient-to-r from-pink-500 to-purple-500"
               whileHover={{ scale: 1.1, rotate: 360 }}
               transition={{ duration: 0.6 }}
             >
@@ -213,7 +214,7 @@ const Landing = () => {
             </h2>
 
             <motion.div
-              className="w-24 h-1 mx-auto mb-8 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full"
+              className="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-pink-500 to-purple-500"
               initial={{ width: 0 }}
               whileInView={{ width: 96 }}
               viewport={{ once: true }}
@@ -229,8 +230,8 @@ const Landing = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <div className="relative p-8 bg-white rounded-3xl shadow-2xl ring-1 ring-purple-100">
-                <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center">
+              <div className="relative p-8 bg-white shadow-2xl rounded-3xl ring-1 ring-purple-100">
+                <div className="absolute flex items-center justify-center w-8 h-8 rounded-full -top-4 -left-4 bg-gradient-to-r from-pink-500 to-purple-500">
                   <Sparkles className="w-4 h-4 text-white" />
                 </div>
 
@@ -245,8 +246,8 @@ const Landing = () => {
                 </p>
               </div>
 
-              <div className="relative p-8 bg-gradient-to-br from-pink-50 to-purple-50 rounded-3xl shadow-xl border border-pink-100">
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center">
+              <div className="relative p-8 border border-pink-100 shadow-xl bg-gradient-to-br from-pink-50 to-purple-50 rounded-3xl">
+                <div className="absolute flex items-center justify-center w-8 h-8 rounded-full -top-4 -right-4 bg-gradient-to-r from-purple-500 to-indigo-500">
                   <Heart className="w-4 h-4 text-white" />
                 </div>
 
@@ -286,7 +287,7 @@ const Landing = () => {
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
-                    className="relative p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="relative p-6 transition-all duration-300 bg-white shadow-lg rounded-2xl hover:shadow-xl"
                     whileHover={{ y: -5, scale: 1.02 }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -303,24 +304,24 @@ const Landing = () => {
                     >
                       {stat.number}
                     </div>
-                    <div className="text-sm text-gray-600 font-medium">
+                    <div className="text-sm font-medium text-gray-600">
                       {stat.label}
                     </div>
                   </motion.div>
                 ))}
               </div>
               <motion.div
-                className="relative p-8 bg-gradient-to-br from-white to-purple-50 rounded-3xl shadow-2xl border border-purple-100"
+                className="relative p-8 border border-purple-100 shadow-2xl bg-gradient-to-br from-white to-purple-50 rounded-3xl"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="absolute top-4 right-4 w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full opacity-20"></div>
-                <div className="absolute bottom-4 left-4 w-4 h-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full opacity-30"></div>
+                <div className="absolute w-6 h-6 rounded-full top-4 right-4 bg-gradient-to-r from-pink-500 to-purple-500 opacity-20"></div>
+                <div className="absolute w-4 h-4 rounded-full bottom-4 left-4 bg-gradient-to-r from-purple-500 to-indigo-500 opacity-30"></div>
 
                 <h3 className="mb-4 text-xl font-bold text-purple-700">
                   Our Mission
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="leading-relaxed text-gray-600">
                   To provide a secure, elegant, and intuitive platform where
                   your precious memories are not just stored, but celebrated.
                   We're committed to making photo management a delightful
@@ -362,7 +363,7 @@ const Landing = () => {
             </p>
             <Link to="/register">
               <motion.button
-                className="px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                className="px-8 py-4 text-lg font-semibold text-white transition-all duration-300 rounded-full shadow-xl cursor-pointer bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:shadow-2xl"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -427,23 +428,23 @@ const Landing = () => {
         id="contact"
         className="relative px-6 py-24 overflow-hidden bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50"
       >
-        <div className="absolute top-10 right-10 w-24 h-24 bg-pink-200 rounded-full opacity-20 animate-bounce"></div>
-        <div className="absolute bottom-10 left-10 w-32 h-32 bg-purple-200 rounded-full opacity-15 animate-pulse"></div>
+        <div className="absolute w-24 h-24 bg-pink-200 rounded-full top-10 right-10 opacity-20 animate-bounce"></div>
+        <div className="absolute w-32 h-32 bg-purple-200 rounded-full bottom-10 left-10 opacity-15 animate-pulse"></div>
         <div
-          className="absolute top-1/2 right-20 w-16 h-16 bg-indigo-200 rounded-full opacity-25 animate-bounce"
+          className="absolute w-16 h-16 bg-indigo-200 rounded-full opacity-25 top-1/2 right-20 animate-bounce"
           style={{ animationDelay: "1s" }}
         ></div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
           <motion.div
-            className="text-center mb-16"
+            className="mb-16 text-center"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <motion.div
-              className="inline-flex items-center justify-center w-20 h-20 mb-6 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full shadow-xl"
+              className="inline-flex items-center justify-center w-20 h-20 mb-6 rounded-full shadow-xl bg-gradient-to-r from-pink-500 to-purple-500"
               whileHover={{ scale: 1.1, rotate: 360 }}
               transition={{ duration: 0.6 }}
             >
@@ -455,20 +456,20 @@ const Landing = () => {
             </h2>
 
             <motion.div
-              className="w-24 h-1 mx-auto mb-8 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full"
+              className="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-pink-500 to-purple-500"
               initial={{ width: 0 }}
               whileInView={{ width: 96 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5, duration: 0.8 }}
             ></motion.div>
 
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="max-w-2xl mx-auto text-lg text-gray-600">
               Have questions or feedback? We'd love to hear from you. Send us a
               message and we'll respond as soon as possible.
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid items-start gap-12 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -477,9 +478,9 @@ const Landing = () => {
             >
               <form
                 onSubmit={handleContact}
-                className="relative p-8 bg-white/90 backdrop-blur-sm shadow-2xl rounded-3xl border border-white/50 space-y-6"
+                className="relative p-8 space-y-6 border shadow-2xl bg-white/90 backdrop-blur-sm rounded-3xl border-white/50"
               >
-                <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center">
+                <div className="absolute flex items-center justify-center w-8 h-8 rounded-full -top-4 -left-4 bg-gradient-to-r from-pink-500 to-purple-500">
                   <Sparkles className="w-4 h-4 text-white" />
                 </div>
 
@@ -489,25 +490,25 @@ const Landing = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Your Name"
-                  className="w-full px-6 py-4 text-lg border-2 border-purple-100 rounded-2xl focus:outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition-all duration-300 bg-white/80"
+                  className="w-full px-6 py-4 text-lg transition-all duration-300 border-2 border-purple-100 rounded-2xl focus:outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100 bg-white/80"
                 />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your Email"
-                  className="w-full px-6 py-4 text-lg border-2 border-purple-100 rounded-2xl focus:outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition-all duration-300 bg-white/80"
+                  className="w-full px-6 py-4 text-lg transition-all duration-300 border-2 border-purple-100 rounded-2xl focus:outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100 bg-white/80"
                 />
                 <textarea
                   placeholder="Your Message"
                   rows={5}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full px-6 py-4 text-lg border-2 border-purple-100 rounded-2xl focus:outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition-all duration-300 bg-white/80 resize-none"
+                  className="w-full px-6 py-4 text-lg transition-all duration-300 border-2 border-purple-100 resize-none rounded-2xl focus:outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-100 bg-white/80"
                 />
                 <button
                   type="submit"
-                  className="w-full py-4 text-lg font-semibold text-white bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer relative overflow-hidden group"
+                  className="relative w-full py-4 overflow-hidden text-lg font-semibold text-white transition-all duration-300 shadow-xl cursor-pointer bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-2xl hover:shadow-2xl group"
                   disabled={loading}
                 >
                   <span className="relative z-10 flex items-center justify-center">
@@ -549,7 +550,7 @@ const Landing = () => {
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className="relative p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/50"
+                  className="relative p-6 transition-all duration-300 border shadow-lg bg-white/80 backdrop-blur-sm rounded-2xl hover:shadow-xl border-white/50"
                   whileHover={{ y: -5, scale: 1.02 }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -559,12 +560,12 @@ const Landing = () => {
                   <div
                     className={`inline-flex items-center justify-center w-14 h-14 mb-4 bg-gradient-to-r ${item.color} rounded-xl shadow-lg`}
                   >
-                    <item.icon className="w-7 h-7 text-white" />
+                    <item.icon className="text-white w-7 h-7" />
                   </div>
-                  <h3 className="text-xl font-bold text-purple-700 mb-2">
+                  <h3 className="mb-2 text-xl font-bold text-purple-700">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="leading-relaxed text-gray-600">
                     {item.description}
                   </p>
                 </motion.div>
