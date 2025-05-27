@@ -28,6 +28,5 @@ const contactSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-// Prevent model overwrite in dev
 export const Contact =
     mongoose.models.Contact || mongoose.model("Contact", contactSchema);

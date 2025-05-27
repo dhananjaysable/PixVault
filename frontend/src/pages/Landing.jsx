@@ -190,7 +190,6 @@ const Landing = () => {
         id="about"
         className="relative px-6 py-24 overflow-hidden bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50"
       >
-        {/* Decorative Bubbles */}
         <div className="absolute w-20 h-20 bg-pink-200 rounded-full top-20 left-10 opacity-20 animate-bounce"></div>
         <div className="absolute w-16 h-16 bg-purple-200 rounded-full top-40 right-20 opacity-30 animate-pulse"></div>
         <div
@@ -203,7 +202,6 @@ const Landing = () => {
         ></div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
-          {/* Section Heading */}
           <motion.div
             className="mb-16 text-center"
             initial={{ opacity: 0, y: 50 }}
@@ -232,9 +230,7 @@ const Landing = () => {
             ></motion.div>
           </motion.div>
 
-          {/* Cards */}
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            {/* Left Column */}
             <motion.div
               className="space-y-8"
               initial={{ opacity: 0, x: -50 }}
@@ -242,7 +238,6 @@ const Landing = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              {/* Vision */}
               <div className="relative p-8 bg-white shadow-2xl rounded-3xl ring-1 ring-purple-100">
                 <div className="absolute flex items-center justify-center w-8 h-8 rounded-full -top-4 -left-4 bg-gradient-to-r from-pink-500 to-purple-500">
                   <Sparkles className="w-4 h-4 text-white" />
@@ -258,8 +253,6 @@ const Landing = () => {
                   organize, and share those stories beautifully.
                 </p>
               </div>
-
-              {/* Built with Passion */}
               <div className="relative p-8 border border-pink-100 shadow-xl bg-gradient-to-br from-pink-50 to-purple-50 rounded-3xl">
                 <div className="absolute flex items-center justify-center w-8 h-8 rounded-full -top-4 -right-4 bg-gradient-to-r from-purple-500 to-indigo-500">
                   <Heart className="w-4 h-4 text-white" />
@@ -277,7 +270,6 @@ const Landing = () => {
               </div>
             </motion.div>
 
-            {/* Right Column - Value Cards + Mission */}
             <motion.div
               className="space-y-6"
               initial={{ opacity: 0, x: 50 }}
@@ -286,7 +278,6 @@ const Landing = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="grid grid-cols-1 gap-6">
-                {/* Value Card 1 */}
                 <div className="p-6 bg-white border border-purple-100 shadow-xl rounded-2xl">
                   <div className="flex items-center mb-4">
                     <Shield className="w-6 h-6 mr-3 text-purple-500" />
@@ -300,7 +291,6 @@ const Landing = () => {
                   </p>
                 </div>
 
-                {/* Value Card 2 */}
                 <div className="p-6 bg-white border border-purple-100 shadow-xl rounded-2xl">
                   <div className="flex items-center mb-4">
                     <Wand2 className="w-6 h-6 mr-3 text-pink-500" />
@@ -315,7 +305,6 @@ const Landing = () => {
                 </div>
               </div>
 
-              {/* Mission */}
               <motion.div
                 className="relative p-8 border border-purple-100 shadow-2xl bg-gradient-to-br from-white to-purple-50 rounded-3xl"
                 whileHover={{ scale: 1.02 }}
@@ -352,7 +341,6 @@ const Landing = () => {
             </motion.div>
           </div>
 
-          {/* CTA */}
           <motion.div
             className="mt-16 text-center"
             initial={{ opacity: 0, y: 30 }}
