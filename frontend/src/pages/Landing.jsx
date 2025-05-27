@@ -93,7 +93,7 @@ const Landing = () => {
             whileHover={{ scale: 1.05 }}
           >
             <Sparkles className="w-4 h-4 mr-2 text-pink-500" />
-            Your Photos Deserve Better
+          Crafted for Photo Lovers
           </motion.div>
 
           <motion.h1
