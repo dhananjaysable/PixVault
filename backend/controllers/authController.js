@@ -75,7 +75,7 @@ export const login = async (req, res) => {
 
         return res.cookie("token", token, cookieOptions).json({
             success: true,
-            message: "User logged in successfully."
+            message: `Welcome ${user.name}`
         })
     } catch (error) {
         return res.status(500).json({
