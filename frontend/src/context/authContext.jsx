@@ -3,10 +3,6 @@ import axios from "axios";
 
 const AuthContext = createContext();
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
-
 export const AuthProvider = ({ children }) => {
   const authApi = "https://pixvault-d9yp.onrender.com/api/auth";
   const uploadApi = "https://pixvault-d9yp.onrender.com/api/upload";
@@ -47,4 +43,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+export const useAuth = () => {
+  return useContext(AuthContext);
 };
