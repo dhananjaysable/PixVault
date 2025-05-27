@@ -62,12 +62,18 @@ export const login = async (req, res) => {
             })
         }
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" })
-        return res.cookie("token", token, {
+
+
+        const cookieOptions = {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
-            maxAge: 24 * 60 * 60 * 1000
-        }).json({
+            secure: true,
+            sameSite: "none",
+            maxAge: 24 * 60 * 60 * 1000,
+            domain: process.env.NODE_ENV === "production" ? undefined : "localhost"
+        };
+
+
+        return res.cookie("token", token, cookieOptions).json({
             success: true,
             message: "User logged in successfully."
         })
@@ -82,11 +88,13 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
     try {
-        return res.clearCookie('token', {
+        const cookieOptions = {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
-        }).json({
+            secure: true,
+            sameSite: "none",
+            domain: process.env.NODE_ENV === "production" ? undefined : "localhost"
+        };
+        return res.clearCookie('token', cookieOptions).json({
             success: true,
             message: "User logged out successfully."
         })
