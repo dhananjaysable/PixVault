@@ -1,24 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { Camera, Menu } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { isLoggedIn, authApi, setIsLoggedIn, setUser } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const navRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target) && menuOpen) {
+        setMenuOpen(false);
+      }
+    };
+
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [menuOpen]);
 
   const handleLogout = async () => {
     try {
       const { data } = await axios.get(`${authApi}/logout`);
       if (data.success) {
+        toast.success("Logged out successfully.");
         setIsLoggedIn(false);
         setUser(null);
       }
     } catch (error) {
       console.log(error);
+      toast.error(error.response.data.message);
     }
   };
 
@@ -27,7 +48,10 @@ const Navbar = () => {
   const showMenuItems = location.pathname === "/";
 
   return (
-    <nav className="relative z-50 px-6 py-4 bg-gradient-to-br from-pink-50 via-purple-50 to-white">
+    <nav 
+      ref={navRef}
+      className="relative z-50 px-6 py-4 bg-gradient-to-br from-pink-50 via-purple-50 to-white"
+    >
       <div className="flex items-center justify-between mx-auto max-w-7xl">
         <Link
           to="/"
@@ -107,7 +131,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center md:hidden">
           <button
-            className="text-purple-700 transition-colors hover:text-pink-500 focus:outline-none cursor-pointer"
+            className="text-purple-700 transition-colors cursor-pointer hover:text-pink-500 focus:outline-none"
             onClick={handleMenuToggle}
             aria-label="Open menu"
           >
@@ -122,28 +146,28 @@ const Navbar = () => {
               <>
                 <Link
                   to="/"
-                  className="font-medium text-purple-700 hover:text-pink-500 cursor-pointer"
+                  className="font-medium text-purple-700 cursor-pointer hover:text-pink-500"
                   onClick={() => setMenuOpen(false)}
                 >
                   Home
                 </Link>
                 <a
                   href="#about"
-                  className="font-medium text-purple-700 hover:text-pink-500 cursor-pointer"
+                  className="font-medium text-purple-700 cursor-pointer hover:text-pink-500"
                   onClick={() => setMenuOpen(false)}
                 >
                   About
                 </a>
                 <a
                   href="#features"
-                  className="font-medium text-purple-700 hover:text-pink-500 cursor-pointer"
+                  className="font-medium text-purple-700 cursor-pointer hover:text-pink-500"
                   onClick={() => setMenuOpen(false)}
                 >
                   Features
                 </a>
                 <a
                   href="#contact"
-                  className="font-medium text-purple-700 hover:text-pink-500 cursor-pointer"
+                  className="font-medium text-purple-700 cursor-pointer hover:text-pink-500"
                   onClick={() => setMenuOpen(false)}
                 >
                   Contact
@@ -155,14 +179,14 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/login"
-                    className="w-40 px-6 py-2 font-semibold text-center text-purple-700 transition-all duration-300 transform border border-purple-200 rounded-full hover:text-pink-500 hover:border-pink-300 hover:bg-white/50 hover:scale-105 cursor-pointer"
+                    className="w-40 px-6 py-2 font-semibold text-center text-purple-700 transition-all duration-300 transform border border-purple-200 rounded-full cursor-pointer hover:text-pink-500 hover:border-pink-300 hover:bg-white/50 hover:scale-105"
                     onClick={() => setMenuOpen(false)}
                   >
                     Login
                   </Link>
                   <Link
                     to="/register"
-                    className="w-40 px-6 py-2 font-semibold text-center text-white transition-all duration-300 transform rounded-full shadow-lg bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 hover:scale-105 hover:shadow-pink-500/25 cursor-pointer"
+                    className="w-40 px-6 py-2 font-semibold text-center text-white transition-all duration-300 transform rounded-full shadow-lg cursor-pointer bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 hover:scale-105 hover:shadow-pink-500/25"
                     onClick={() => setMenuOpen(false)}
                   >
                     Register
@@ -172,7 +196,7 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/dashboard"
-                    className="w-40 px-6 py-2 font-semibold text-center text-purple-700 transition-all duration-300 transform border border-purple-200 rounded-full hover:text-pink-500 hover:border-pink-300 hover:bg-white/50 hover:scale-105 cursor-pointer"
+                    className="w-40 px-6 py-2 font-semibold text-center text-purple-700 transition-all duration-300 transform border border-purple-200 rounded-full cursor-pointer hover:text-pink-500 hover:border-pink-300 hover:bg-white/50 hover:scale-105"
                     onClick={() => setMenuOpen(false)}
                   >
                     Dashboard
@@ -182,7 +206,7 @@ const Navbar = () => {
                       handleLogout();
                       setMenuOpen(false);
                     }}
-                    className="w-40 px-6 py-2 font-semibold text-center text-white transition-all duration-300 transform border-0 rounded-full shadow-lg bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 hover:scale-105 hover:shadow-pink-500/25 cursor-pointer"
+                    className="w-40 px-6 py-2 font-semibold text-center text-white transition-all duration-300 transform border-0 rounded-full shadow-lg cursor-pointer bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 hover:scale-105 hover:shadow-pink-500/25"
                   >
                     Logout
                   </button>
