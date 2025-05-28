@@ -65,12 +65,13 @@ export const login = async (req, res) => {
 
 
         const cookieOptions = {
-            httpOnly: true,
-            secure: true,
-            sameSite: "none",
-            maxAge: 24 * 60 * 60 * 1000,
-            domain: process.env.NODE_ENV === "production" ? undefined : "localhost"
-        };
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 24 * 60 * 60 * 1000,
+    path: '/',
+    domain: process.env.NODE_ENV === "production" ? undefined : "localhost"
+};
 
 
         return res.cookie("token", token, cookieOptions).json({
