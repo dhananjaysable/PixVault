@@ -93,6 +93,8 @@ export const logout = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: "none",
+            maxAge: 0,
+            path: '/',
             domain: process.env.NODE_ENV === "production" ? undefined : "localhost"
         };
         return res.clearCookie('token', cookieOptions).json({
