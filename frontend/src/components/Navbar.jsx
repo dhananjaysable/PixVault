@@ -31,7 +31,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const { data } = await axios.get(`${authApi}/logout`);
+      const { data } = await axios.post(`${authApi}/logout`);
       if (data.success) {
         toast.success("Logged out successfully.");
         setIsLoggedIn(false);
